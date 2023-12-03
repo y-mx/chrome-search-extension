@@ -1,0 +1,16 @@
+{
+    "manifest_version": 3,
+    "name": "Search and Logging",
+    "version": "1.0",
+    "description": "Adds side panel that can be used to searching and logs websites visited.",
+    "side_panel": {
+      "default_path": "sidepanel.html"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions": [
+        "sidePanel",
+        "webNavigation"
+    ]
+  }
