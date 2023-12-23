@@ -1,5 +1,3 @@
-console.log('sidepanel.js');
-
 function search() {
     var searchField = document.getElementById("search");
     var logs = document.getElementById("logs");
@@ -14,6 +12,9 @@ chrome.runtime.onMessage.addListener(
         if (request.type === "request url") {
             var logs = document.getElementById("logs");
             logs.innerHTML += `<p>Visited: ${request.url} at ${request.time} by ${request.transition}</p>`
+        } else if (request.type === "copy selection") {
+            var logs = document.getElementById("logs");
+            logs.innerHTML += `<p>Copied: ${request.text} at ${request.time} from ${request.url}</p>`
         }
     }
 );

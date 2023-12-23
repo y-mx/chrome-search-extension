@@ -11,6 +11,10 @@
     },
     "permissions": [
         "sidePanel",
-        "webNavigation"
+        "webNavigation",
+        "contextMenus",
+        "clipboardWrite",
+        "activeTab",
+        "scripting"
     ]
   }
