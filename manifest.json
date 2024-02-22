@@ -9,12 +9,24 @@
     "background": {
         "service_worker": "background.js"
     },
+    "content_scripts": [{
+      "matches": ["file:///*dialog.html"],
+      "js": ["dialog.js"],
+      "all_frames": true
+    }],
+    "web_accessible_resources": [
+      {
+        "resources": ["dialog.html", "dialog.js"],
+        "matches": ["<all_urls>"]
+      }
+    ],
     "permissions": [
         "sidePanel",
         "webNavigation",
         "contextMenus",
         "clipboardWrite",
         "activeTab",
-        "scripting"
+        "scripting",
+        "tabs"
     ]
   }

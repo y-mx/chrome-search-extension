@@ -2,7 +2,7 @@ var loglist = [];
 function search() {
     var searchField = document.getElementById("search");
     var logs = document.getElementById("logs");
-    loglist.push(JSON.stringify({type:"search", terms:searchField.value, timestamp:Date.now()})+"\n");
+    loglist.push(JSON.stringify({logType:"search", terms:searchField.value, timestamp:Date.now()})+"\n");
     logs.innerHTML += `<p>Searched: ${searchField.value} at ${Date.now()}</p>`
     const newURL = 'https://www.google.com/search?q=' + encodeURIComponent(searchField.value);
     chrome.tabs.create({ url: newURL });
@@ -13,11 +13,11 @@ chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         if (request.type === "request url") {
             var logs = document.getElementById("logs");
-            loglist.push(JSON.stringify({type:"visit", url:request.url, by:request.transition, timestamp:request.time})+"\n");
+            loglist.push(JSON.stringify({logType:"visit", url:request.url, by:request.transition, timestamp:request.time})+"\n");
             logs.innerHTML += `<p>Visited: ${request.url} at ${request.time} by ${request.transition}</p>`
         } else if (request.type === "copy selection") {
             var logs = document.getElementById("logs");
-            loglist.push(JSON.stringify({type:"copy", url:request.url, selection:request.text, timestamp:request.time})+"\n");
+            loglist.push(JSON.stringify({logType:"copy", url:request.url, selection:request.text, timestamp:request.time})+"\n");
             logs.innerHTML += `<p>Copied: ${request.text} at ${request.time} from ${request.url}</p>`
         }
     }
